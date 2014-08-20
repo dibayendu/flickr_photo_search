@@ -50,5 +50,8 @@ group :production do
 	gem 'unicorn'
 end
 
+# flickr library
+gem 'flickraw'
+
 # bootstrap
 gem 'bootstrap-sass', '2.3.2.0'
