@@ -45,3 +45,6 @@ end
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
 end
+
+# bootstrap
+gem 'bootstrap-sass', '2.3.2.0'

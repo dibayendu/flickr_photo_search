@@ -1,0 +1,9 @@
+<h3 class="offset3">Search Photos in Flickr</h3>
+<div class="row">
+  <div class="span6 offset3">
+      <%= form_tag("/", method: "get") do %>
+  			<%= text_field_tag(:query, nil, placeholder: 'Enter search term...') %>
+  			<%= submit_tag("Search", class: "btn btn-large btn-primary") %>
+			<% end %>
+  </div>
+</div>
