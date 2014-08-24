@@ -36,6 +36,7 @@ class PhotosController < ApplicationController
 
   private
     def get_default_flickr_photo_search_url(api_key, text, photos_per_page)
+      text = URI.escape(text)
       "https://api.flickr.com/services/rest/?method=flickr.photos.search" +
       "&api_key=#{api_key}" +
       "&text=#{text}&per_page=#{photos_per_page}" +
