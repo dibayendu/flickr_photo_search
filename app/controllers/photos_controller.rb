@@ -1,24 +1,20 @@
 require_relative '../../lib/errors/exceptions'
 
 class PhotosController < ApplicationController
+  PHOTOS_PER_PAGE = 112
+
   def search
-  	@photos = []
-    @current_page = 1
+    @searched_query = params[:query]
+    @current_page = (params[:page_number] && !params[:page_number].empty?) ? params[:page_number].to_i : 1
+    @photos = []
     @capacity = 8
-    photos_per_page = 112
-  	@error
-  	if params[:query] && !params[:query].empty?
-  		query = params[:query]
-      @searched_query = query
+  	if @searched_query && !@searched_query.empty?
   		begin
-        @total_pages = get_total_number_of_pages(ENV['FLICKR_API_KEY'], @searched_query, photos_per_page)
-        @last_page = @total_pages
-        @current_page = params[:page_number] if params[:page_number] && !params[:page_number].empty?
-  			@photos = flickr.photos.search(text: query, per_page: photos_per_page, page: @current_page)
+        @last_page = @total_pages = get_total_number_of_pages(ENV['FLICKR_API_KEY'], @searched_query, PHOTOS_PER_PAGE)
+  			@photos = flickr.photos.search(text: @searched_query, per_page: PHOTOS_PER_PAGE, page: @current_page)
         flash.now[:warn] = "Sorry, could not find photos for text: #{@searched_query}" unless @photos.any?
   		rescue => e
-  			@error = "Something went wrong! Either you don't have internet connection of Flickr is down!"
-        flash.now[:error] = @error
+  			flash.now[:error] = "Something went wrong! Either you don't have internet connection of Flickr is down!"
   		end
   	end
   end
