@@ -16,6 +16,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$grayMediumLight: #eaeaea;
+$grayLight: #999;
+$gray: #555;
+$grayDarker: #222;
+
 body {
     padding-top: 60px;
     background: #222;
@@ -52,4 +57,23 @@ a:hover {
 .modal {
 	overflow: auto;
 	color: #333;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: $grayLight;
+  a {
+    color: $gray;
+    &:hover {
+      color: $grayLight;
+    }
+  }
+  small {
+    float: left;
+  }
+  p {
+    float: right;
+  }
 }
