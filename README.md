@@ -16,7 +16,7 @@ cd flickr_photo_search
 ```
 
 > Before installing on local machine, you need to [get api key from flickr].
-> The api key and shared secret in config/local_env.yml.
+> The api key and shared secret need to be added in config/local_env.yml (instructions are in the file how to add them).
 > Otherwise it will show error on the webpage.
 
 ```sh
