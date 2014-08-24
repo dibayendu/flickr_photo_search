@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
   	@photos = []
     @current_page = 1
     @capacity = 8
-    photos_per_page = 110
+    photos_per_page = 112
   	@error
   	if params[:query] && !params[:query].empty?
   		query = params[:query]

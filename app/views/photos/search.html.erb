@@ -6,10 +6,10 @@
   				<%= text_field_tag(:query,
   														nil,
   														placeholder: 'ex: Melbourne',
-  														class: "form-control input-lg")
+  														class: "input-lg")
   				%>
+          <%= submit_tag("Search", class: "btn btn-lg btn-primary") %>
 	      </div>
-  			<%= submit_tag("Search", class: "btn btn-lg btn-primary") %>
 			<% end %>
   </div>
 </div>
