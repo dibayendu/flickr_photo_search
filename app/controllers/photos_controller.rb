@@ -1,3 +1,5 @@
+require_relative '../../lib/errors/exceptions'
+
 class PhotosController < ApplicationController
   def search
   	@photos = []
@@ -8,13 +10,13 @@ class PhotosController < ApplicationController
   	if params[:query] && !params[:query].empty?
   		query = params[:query]
       @searched_query = query
-      @total_pages = get_total_number_of_pages(ENV['FLICKR_API_KEY'], @searched_query, photos_per_page)
-      @last_page = @total_pages
-      p @last_page
-      @current_page = params[:page_number] if params[:page_number] && !params[:page_number].empty?
   		begin
+        @total_pages = get_total_number_of_pages(ENV['FLICKR_API_KEY'], @searched_query, photos_per_page)
+        @last_page = @total_pages
+        @current_page = params[:page_number] if params[:page_number] && !params[:page_number].empty?
   			@photos = flickr.photos.search(text: query, per_page: photos_per_page, page: @current_page)
-  		rescue
+        flash.now[:warn] = "Sorry, could not find photos for text: #{@searched_query}" unless @photos.any?
+  		rescue => e
   			@error = "Something went wrong! Either you don't have internet connection of Flickr is down!"
         flash.now[:error] = @error
   		end
@@ -28,7 +30,7 @@ class PhotosController < ApplicationController
     if data.has_key? "photos"
       data["photos"]["pages"].to_i
     else
-      raise Exceptions::FlickrApiError.new(data)
+      raise ::Exceptions::FlickrApiError.new(data)
     end
   end
 
