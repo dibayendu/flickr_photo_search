@@ -1,19 +1,19 @@
 <ul class="pagination">
-  <li class="<%= @current_page.to_i == 1 ? "disabled" : "" %>">
+  <li class="<%= @current_page == 1 ? "disabled" : "" %>">
     <a href="<%= get_page_url(1, @searched_query) %>">First</a>
   </li>
-  <li class="<%= @current_page.to_i == 1 ? "disabled" : "" %>">
-    <a href="<%= get_page_url((@current_page.to_i)-1, @searched_query) %>">Previous</a>
+  <li class="<%= @current_page == 1 ? "disabled" : "" %>">
+    <a href="<%= get_page_url(@current_page-1, @searched_query) %>">Previous</a>
   </li>
-  <% get_paginations(@current_page.to_i, @total_pages, @capacity).each do |key, value| %>
+  <% get_paginations(@current_page, @total_pages, @capacity).each do |key, value| %>
     <li class="<%= value %>">
       <a href="<%= get_page_url(key.to_i, @searched_query) %>"><%= key %></a>
     </li>
   <% end %>
-  <li class="<%= @current_page.to_i == @last_page ? "disabled" : "" %>">
-    <a href="<%= get_page_url((@current_page.to_i)+1, @searched_query) %>">Next</a>
+  <li class="<%= @current_page == @last_page ? "disabled" : "" %>">
+    <a href="<%= get_page_url(@current_page+1, @searched_query) %>">Next</a>
   </li>
-  <li class="<%= @current_page.to_i == @last_page ? "disabled" : "" %>">
+  <li class="<%= @current_page == @last_page ? "disabled" : "" %>">
     <a href="<%= get_page_url(@last_page, @searched_query) %>">Last</a>
   </li>
 </ul>
