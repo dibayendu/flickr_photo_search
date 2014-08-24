@@ -9,10 +9,6 @@ describe PhotosHelper do
 		})
 	end
 
-	# this is the default api key used in flickr website
-	# https://www.flickr.com/services/api/explore/flickr.photos.search
-	# look into the URL at the bottom of the form submission
-	let(:api_key) { "da5f1818f1abf3fd41d6ace508651a45"}
 	let(:text) { "Melbourne" }
 	let(:photos_per_page) { 1 }
 
