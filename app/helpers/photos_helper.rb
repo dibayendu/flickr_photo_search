@@ -13,8 +13,6 @@ module PhotosHelper
 
 	def get_paginations(current_page, total_pages, capacity)
 		paginations = {}
-		# paginations['First'] = current_page == 1 ? "disabled" : ""
-		# paginations['Previous'] = current_page == 1 ? "disabled" : ""
 		before_count, after_count = get_before_and_after_page_count(current_page, total_pages, capacity)
 		(current_page - before_count).upto(current_page - 1) do |i|
 			paginations[i.to_s] = ""
@@ -23,8 +21,6 @@ module PhotosHelper
 		(current_page + 1).upto(current_page + after_count) do |i|
 			paginations[i.to_s] = ""
 		end
-		# paginations['Next'] = current_page == total_pages ? "disabled" : ""
-		# paginations['Last'] = current_page == total_pages ? "disabled" : ""
 		paginations
 	end
 
