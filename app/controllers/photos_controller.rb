@@ -1,5 +1,24 @@
 class PhotosController < ApplicationController
   def search
+  	@photos = []
+    @current_page = 1
+    @capacity = 8
+    photos_per_page = 110
+  	@error
+  	if params[:query] && !params[:query].empty?
+  		query = params[:query]
+      @searched_query = query
+      @total_pages = get_total_number_of_pages(ENV['FLICKR_API_KEY'], @searched_query, photos_per_page)
+      @last_page = @total_pages
+      p @last_page
+      @current_page = params[:page_number] if params[:page_number] && !params[:page_number].empty?
+  		begin
+  			@photos = flickr.photos.search(text: query, per_page: photos_per_page, page: @current_page)
+  		rescue
+  			@error = "Something went wrong! Either you don't have internet connection of Flickr is down!"
+        flash.now[:error] = @error
+  		end
+  	end
   end
 
   def get_total_number_of_pages(api_key, text, photos_per_page)

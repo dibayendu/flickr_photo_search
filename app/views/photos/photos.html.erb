@@ -1,0 +1,9 @@
+<%= render template: "photos/paginations" %>
+<div id="links">
+  <% @photos.each do |photo|%>
+    <a href="<%= get_big_photo_url(photo) %>" title="<%= photo.title %>" data-gallery>
+        <img src="<%= get_small_photo_url(photo) %>" alt="<%= photo.title %>">
+    </a>
+  <% end %>
+</div>
+<%= render template: "photos/paginations" %>
